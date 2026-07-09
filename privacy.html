@@ -26,18 +26,22 @@
   </ul>
 
   <h2>AI API Calls</h2>
-  <p>Trade Mail Trio sends email content to your chosen AI provider (OpenAI, Anthropic, Google Gemini, Groq, DeepSeek, or any custom endpoint you configure) using <strong>your own API key</strong>. The API key is stored locally in your browser. We never see it, log it, or transmit it to any server we control.</p>
+  <p>Trade Mail Trio sends email content to your chosen AI provider (OpenAI, Anthropic, Google Gemini, Groq, or any custom endpoint you configure) using <strong>your own API key</strong>. The API key is stored locally in your browser. We never see it, log it, or transmit it to any server we control.</p>
   <p>Your email content is sent directly from your browser to the AI provider's servers. Please refer to your AI provider's privacy policy for how they handle your data:</p>
   <ul>
     <li><a href="https://openai.com/policies/privacy-policy">OpenAI</a></li>
     <li><a href="https://www.anthropic.com/privacy">Anthropic</a></li>
     <li><a href="https://policies.google.com/privacy">Google Gemini</a></li>
     <li><a href="https://groq.com/privacy-policy/">Groq</a></li>
-    <li><a href="https://platform.deepseek.com/privacy">DeepSeek</a></li>
   </ul>
 
   <h2>Data Export & Import</h2>
-  <p>The extension includes an optional data export/import feature for work handoff. Exported files are encrypted with AES-256-GCM when a password is set. You control who receives the file.</p>
+  <p>The extension includes a work handoff feature with double-layer password protection:</p>
+  <ul>
+    <li><strong>Extension security password</strong> — required to access the export function. Stored as a cryptographic hash in your browser's local storage.</li>
+    <li><strong>File encryption password</strong> — set separately for each export. The exported .tmt file is encrypted with AES-256-GCM. Share this password with the intended recipient through a separate channel.</li>
+  </ul>
+  <p>Import requires the password set during export. You control who receives the file and its password.</p>
 
   <h2>Third-Party Services</h2>
   <p>Trade Mail Trio does not integrate with any analytics, tracking, or advertising services. There are no third-party scripts, pixels, or trackers in this extension.</p>
