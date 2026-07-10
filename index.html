@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trade Mail Trio — Turn Gmail into your CRM</title>
+<link rel="icon" type="image/png" sizes="128x128" href="icon128.png">
+<link rel="apple-touch-icon" href="icon128.png">
+<style>
+  :root {
+    --blue:#1a73e8;--blue-dark:#0d47a1;--gray-50:#f8f9fa;--gray-100:#f1f3f4;--gray-600:#5f6368;--gray-900:#202124;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--gray-900);line-height:1.6;scroll-behavior:smooth}
+  .container{max-width:960px;margin:0 auto;padding:0 24px}
+
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  @keyframes arrowPulse{0%,100%{opacity:.35}50%{opacity:1}}
+  @keyframes heroIconIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+  @keyframes badgeGlow{0%,100%{box-shadow:0 0 0 0 rgba(26,115,232,.3)}50%{box-shadow:0 0 0 8px rgba(26,115,232,0)}}
+  @keyframes iconBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  @keyframes underlineIn{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .hero-badge{animation:fadeInUp .6s ease both}
+  .hero h1{animation:fadeInUp .6s .1s ease both}
+  .hero .subtitle{animation:fadeInUp .6s .2s ease both}
+  .hero .tagline{animation:fadeInUp .6s .3s ease both}
+  .hero .trust{animation:fadeInUp .6s .4s ease both}
+  .hero .cta{animation:fadeInUp .6s .5s ease both}
+  .card{transition:transform .25s ease,box-shadow .25s ease}
+  .card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+  .pricing-card{transition:transform .25s ease,box-shadow .25s ease}
+  .pricing-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+  .pricing-card.featured:hover{transform:translateY(-6px) scale(1.02)}
+  .pricing-btn{transition:background .2s ease,transform .15s ease}
+  .pricing-btn:hover{transform:scale(1.04)}
+  .nav-icon{animation:float 4s ease-in-out infinite}
+  .hero img{animation:heroIconIn .5s ease both}
+  .pricing-card.featured::before{animation:badgeGlow 2.5s ease-in-out infinite}
+  .card:hover .card-icon{animation:iconBounce .3s ease}
+  .section-title::after{content:'';display:block;width:48px;height:3px;background:var(--blue);border-radius:2px;margin:8px auto 0;transform:scaleX(0);transition:transform .8s ease}
+  .section-title.visible::after{transform:scaleX(1)}
+
+  /* Hero */
+  .hero{text-align:center;padding:80px 0 60px}
+  .hero-badge{display:inline-block;background:#e8f0fe;color:var(--blue);padding:4px 12px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:20px}
+  .hero h1{font-size:44px;font-weight:800;letter-spacing:-1px;margin-bottom:6px}
+  .hero h1 span{color:var(--blue)}
+  .hero .subtitle{font-size:20px;color:var(--gray-600);margin-bottom:6px}
+  .hero .tagline{font-size:15px;color:var(--gray-600);margin-bottom:28px;max-width:600px;margin-left:auto;margin-right:auto}
+  .hero .trust{display:inline-block;background:#e6f4ea;color:#137333;padding:8px 20px;border-radius:6px;font-size:14px;font-weight:600;margin-bottom:30px;border:1px solid rgba(19,115,51,.15)}
+  .cta{display:inline-block;background:var(--blue);color:#fff;padding:14px 36px;border-radius:8px;font-size:16px;font-weight:700;text-decoration:none;transition:background .2s ease,transform .15s ease}.cta:hover{background:var(--blue-dark);transform:scale(1.04)}
+
+  /* Workflow */
+  .workflow{padding:60px 0;background:var(--gray-900);color:#fff}
+  .workflow h2{text-align:center;font-size:24px;font-weight:700;margin-bottom:36px;color:#fff}
+  .wf-row{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+  .wf-step{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:20px 22px;text-align:center;font-size:13px;font-weight:600;min-width:110px}
+  .wf-icon{font-size:28px;margin-bottom:6px}
+  .wf-label{font-size:11px;color:rgba(255,255,255,.5);margin-top:4px}
+  .wf-arrow{font-size:22px;color:var(--blue);animation:arrowPulse 1.8s ease-in-out infinite}
+  .wf-arrow:nth-child(4){animation-delay:.3s}
+  .wf-arrow:nth-child(6){animation-delay:.6s}
+  .wf-arrow:nth-child(8){animation-delay:.9s}
+
+  /* Features */
+  .features{padding:60px 0;background:var(--gray-50)}
+  .section-title{text-align:center;font-size:28px;font-weight:800;margin-bottom:40px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+  .card{background:#fff;border:1px solid #e8eaed;border-radius:12px;padding:28px}
+  .card-icon{font-size:32px;margin-bottom:14px}
+  .card h3{font-size:17px;font-weight:700;margin-bottom:8px}
+  .card p{font-size:14px;color:var(--gray-600)}
+
+  /* Why */
+  .why{padding:60px 0}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+  .why-item{text-align:center;padding:24px}
+  .why-item .icon{font-size:40px;margin-bottom:12px}
+  .why-item h3{font-size:16px;margin-bottom:6px}
+  .why-item p{font-size:14px;color:var(--gray-600)}
+
+  /* Pain-point */
+  .pain{padding:60px 0;background:var(--gray-900);color:#fff;text-align:center}
+  .pain blockquote{font-size:22px;font-weight:500;max-width:700px;margin:0 auto 24px;line-height:1.5;font-style:italic}
+  .pain .answer{font-size:17px;max-width:650px;margin:0 auto;color:rgba(255,255,255,.75)}
+
+  /* CTA */
+  .cta-bottom{text-align:center;padding:60px 0}
+  .cta-bottom h2{font-size:28px;margin-bottom:12px}
+  .cta-bottom p{color:var(--gray-600);margin-bottom:24px}
+
+  /* Footer */
+  footer{border-top:1px solid #e8eaed;padding:24px 0;text-align:center;font-size:13px;color:var(--gray-600)}
+  footer a{color:var(--blue);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  /* Pricing inline */
+  .pricing-grid{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+  .pricing-card{background:#fff;border:1px solid #e8eaed;border-radius:12px;padding:32px;width:280px;text-align:center}
+  .pricing-card.featured{border-color:var(--blue);border-width:2px;position:relative}
+  .pricing-card.featured::before{content:"BEST VALUE";position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;padding:2px 12px;border-radius:10px;font-size:11px;font-weight:700}
+  .pricing-card h3{font-size:18px;margin-bottom:4px}
+  .pricing-card .price{font-size:36px;font-weight:800;color:var(--gray-900);margin:12px 0 4px}
+  .pricing-card .price span{font-size:14px;font-weight:400;color:var(--gray-600)}
+  .pricing-card .detail{font-size:13px;color:var(--gray-600);margin:8px 0 16px;line-height:1.5}
+  .pricing-card ul{text-align:left;font-size:13px;color:var(--gray-600);margin:0 0 20px;padding:0;list-style:none}
+  .pricing-card ul li{padding:4px 0}
+  .pricing-card ul li::before{content:"✓ ";color:#34a853;font-weight:700}
+  .pricing-btn{display:inline-block;background:var(--blue);color:#fff;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none}
+
+  @media(max-width:640px){
+    .hero h1{font-size:32px}
+    .wf-row{flex-direction:column;gap:8px}
+    .wf-arrow{transform:rotate(90deg)}
+  }
+</style>
+</head>
+<body>
+
+<nav style="display:flex;align-items:center;max-width:960px;margin:0 auto;padding:20px 24px;">
+  <img src="icon128.png" alt="TMT" class="nav-icon" style="width:48px;height:48px;border-radius:10px;">
+  <span style="font-weight:800;font-size:19px;color:#202124;margin-left:12px;letter-spacing:-0.3px;">Trade Mail Trio</span>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <img src="icon128.png" alt="TMT" style="display:block;margin:0 auto 16px;width:80px;height:80px;border-radius:18px;box-shadow:0 4px 16px rgba(0,0,0,.12);">
+    <h1>Turn Gmail into<br><span>your CRM.</span></h1>
+    <p class="subtitle">Summarize · Extract Actions · Polish · Client CRM — all inside Gmail.</p>
+    <p class="tagline">The extension purpose-built for cross-border trade email.</p>
+    <div class="trust">🔒 Your client data stays on your computer — never leaves your machine.</div>
+    <br>
+    <a href="#" class="cta">Get it on Chrome Web Store</a>
+  </div>
+</section>
+
+<section class="workflow">
+  <div class="container">
+    <h2>Your Workflow, Inside Gmail</h2>
+    <div class="wf-row">
+      <div class="wf-step"><div class="wf-icon">📧</div>Open Email<div class="wf-label">Start here</div></div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step"><div class="wf-icon">🤖</div>AI Summary<div class="wf-label">Instant TL;DR</div></div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step"><div class="wf-icon">✅</div>Extract Actions<div class="wf-label">Never miss</div></div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step"><div class="wf-icon">✍️</div>Polish Reply<div class="wf-label">4 tone styles</div></div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-step"><div class="wf-icon">👥</div>Client CRM<div class="wf-label">Auto-organized</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pain">
+  <div class="container">
+    <blockquote>"Tired of losing client details in your Gmail inbox?"</blockquote>
+    <p class="answer">Trade Mail Trio extracts key info on demand, reminds you of promises, and helps you reply professionally in the right tone — built for cross-border business.</p>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <h2 class="section-title">What It Does</h2>
+    <div class="grid">
+      <div class="card"><div class="card-icon">📝</div><h3>Email Summaries</h3><p>One-click TL;DRs and key points. Prices, dates, ports, Incoterms, certifications, and HS codes are automatically highlighted.</p></div>
+      <div class="card"><div class="card-icon">📋</div><h3>Action Extraction</h3><p>AI scans for promises, requests, and deadlines. Items categorized as Client Requests, Your Promises, Client Commitments, or Needs Reply.</p></div>
+      <div class="card"><div class="card-icon">✍️</div><h3>Draft Polishing</h3><p>Rewrite drafts in 4 styles: Professional, Concise, Friendly, or Assertive. Cross-border trade terminology is built in.</p></div>
+      <div class="card"><div class="card-icon">👥</div><h3>Client CRM</h3><p>Every client's history — summaries, pending actions, resolved items — grouped in one place. Collapsible year/month/day folders.</p></div>
+      <div class="card"><div class="card-icon">🤝</div><h3>Work Handoff</h3><p>Double-layer password protection. Export client data as an AES-256-GCM encrypted .tmt file. Your colleague imports with the password you share — all action items and summaries transfer securely.</p></div>
+      <div class="card"><div class="card-icon">🔮</div><h3>Coming Soon: Custom Terminology</h3><p>Upload your product SKUs, internal codes, and domain jargon. TMT learns your business vocabulary for precision-matched AI responses.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="container">
+    <h2 class="section-title">Why Trade Mail Trio</h2>
+    <div class="why-grid">
+      <div class="why-item"><div class="icon">🔒</div><h3>100% Local</h3><p>All client data stored in your browser. No backend server. No database. AI processing is direct between your browser and your chosen provider.</p></div>
+      <div class="why-item"><div class="icon">🔑</div><h3>You Own the AI</h3><p>Use your own API key. TMT never sees, logs, or transmits it. Emails go directly from your browser to your chosen AI provider.</p></div>
+      <div class="why-item"><div class="icon">🆓</div><h3>Free Daily Use</h3><p>5 uses per day — free, no credit card. CRM always included. You bring your own AI key, we never charge for compute.</p></div>
+      <div class="why-item"><div class="icon">🌐</div><h3>Multi-Provider</h3><p>Works with OpenAI, Anthropic Claude, Google Gemini, Groq, or any OpenAI-compatible custom endpoint.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="features" style="background:#fff;">
+  <div class="container">
+    <h2 class="section-title">Simple Pricing</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card"><h3>Free</h3><div class="price">$0</div><div class="detail">14-day full access<br>Then 5 uses per day<br>(summarize, extract, or polish)<br>No credit card</div><ul><li>Client CRM · always free</li><li>Trade term highlighting</li><li>All 4 polish styles</li><li>Your API key, your rules</li></ul><a href="#" class="pricing-btn outline">Get Started</a></div>
+      <div class="pricing-card featured"><h3>Pro Annual</h3><div class="price">$8.25<span>/mo</span></div><div class="detail">$99/year — save 36%</div><ul><li>Unlimited daily use</li><li>Encrypted work handoff</li><li>Priority support</li><li>All Free features</li></ul><a href="#" class="pricing-btn">Get Pro</a></div>
+      <div class="pricing-card"><h3>Lifetime</h3><div class="price">$199</div><div class="detail">One-time payment<br>Forever access</div><ul><li>All Pro features</li><li>No recurring fees</li><li>Pay once, use for life</li><li>All future updates</li></ul><a href="#" class="pricing-btn outline">Get Lifetime</a></div>
+    </div>
+    <p style="text-align:center;margin-top:16px;font-size:13px;color:var(--gray-600);">Also available: <strong>$12.99/month</strong>. 14-day free full trial on all plans.</p>
+  </div>
+</section>
+
+<section class="cta-bottom">
+  <div class="container">
+    <h2>Ready to turn Gmail into your CRM?</h2>
+    <p>Free. No sign-up. Works inside Gmail.</p>
+    <a href="#" class="cta">Get it on Chrome Web Store</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Trade Mail Trio · <a href="https://trademailtrio.github.io/trademailtrio/privacy.html">Privacy Policy</a> · Contact: trademailtrio@gmail.com</p>
+  </div>
+</footer>
+
+<script>
+(function(){var els=document.querySelectorAll('.card,.why-item,.pricing-card,.section-title,.wf-step');var o=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible')}})},{threshold:.15});els.forEach(function(el){el.classList.add('reveal');o.observe(el)})})();
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
